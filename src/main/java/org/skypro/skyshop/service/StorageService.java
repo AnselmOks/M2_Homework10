@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class StorageService {
 
-    private final Map<UUID, Product> products = new HashMap<>();
-    private final Map<UUID, Article> articles = new HashMap<>();
+    private final Map<UUID, Product> products;
+    private final Map<UUID, Article> articles;
 
     private void addProduct(Product product) {
         products.put(product.getId(), product);
@@ -57,6 +57,8 @@ public class StorageService {
     }
 
     public StorageService() {
+        products = new HashMap<>();
+        articles = new HashMap<>();
         fillData();
     }
 
