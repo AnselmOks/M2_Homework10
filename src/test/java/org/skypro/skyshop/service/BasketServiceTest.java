@@ -19,6 +19,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
 public class BasketServiceTest {
@@ -63,8 +64,11 @@ public class BasketServiceTest {
     @Test
     public void returnEmptyUserBasketIfProductBasketIsEmpty() {
         when(productBasket.getAllProducts()).thenReturn(new HashMap<>());
-        Assertions.assertTrue(basketService.getUserBasket().getBasketItems().isEmpty() &&
-                basketService.getUserBasket().getTotal() == 0);
+//        Assertions.assertTrue(basketService.getUserBasket().getBasketItems().isEmpty() &&
+//                basketService.getUserBasket().getTotal() == 0);
+        UserBasket userBasket = basketService.getUserBasket();
+        assertThat(userBasket.getBasketItems()).isEmpty();
+        assertThat(userBasket.getTotal()).isZero();
     }
 
     @DisplayName("Возвращается не пустая корзина, если есть товары в productBasket")

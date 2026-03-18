@@ -14,6 +14,7 @@ import org.skypro.skyshop.model.search.Searchable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,7 +45,8 @@ public class SearchServiceTest {
     @Test
     public void whenStorageIsEmpty() {
         List<SearchResult> results = searchService.search("Помидор");
-        assertEquals(results, Collections.emptyList());
+        //assertEquals(results, Collections.emptyList());
+        assertThat(results).isEmpty();
     }
 
     @DisplayName("Хранилище не пустое, но товар не найден")
